@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>DRAMA-Update</title>
+</head>
+<body>
+<div class="container">
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form1.as_p }}
+
+    <input type="submit" class="btn btn-success" style="border:none;" value="update"><br>
+
+</form></div>
+{% endblock %}

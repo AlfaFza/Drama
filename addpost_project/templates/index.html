@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<html lang="">
+
+<head>
+<title>DRAMA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="pageintro" class="hoc clear" style="background-image:url('static/images/demo/backgrounds/05.jpg');">
+
+   <center><!-- ################################################################################################ -->
+    <article>
+      <h3 class="heading">Add your Post </h3>
+      <p> Is an American pay television over-the-top media service and original programming production company.</p>
+    
+    </article></center>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <h6 class="heading font-x3">Unlimited movies, TV shows and more.</h6>
+      <p>It offers subscription-based video on demand from a library of films and television series.</p>
+      {% if user.is_authenticated %}
+      <button class="btn btn-dark"><a href="{% url 'add_product' %}">add your post</a> </button>
+      {% endif %}
+    </div>
+    <div class="posts">
+      {% for i in products %}
+      <figure class="group">
+        <div><a class="imgover" href="{% url 'detail' i.id %}"><img src="{{ i.img.url }}" alt="{{ i.name }}"></a></div>
+        <figcaption>
+          <h6 class="heading"><a href="/shop/{{ i.id }}" >{{ i.name }} </a></h6>
+          <p>{{ i.desc|truncatewords:25 }}</p><br>
+
+          <p>Rating: {{ i.rating }} /5</p>
+         <footer><a class="btn btn-info" href="{% url 'detail' i.id %}" style=" float:Right;   clear: both; ">View Details</a></footer>
+
+        </figcaption>
+      </figure>
+      {% endfor %}
+      <!-- ################################################################################################ -->
+
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+</body>
+</html>
+{% endblock %}

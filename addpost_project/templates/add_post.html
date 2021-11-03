@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>DRAMA</title>
+</head>
+<body>
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="post name"><br>
+    <textarea  name="desc" placeholder="discription"></textarea><br>
+    <input type="file" name="img" placeholder="image"><br>
+    <input type="text" name="rating" placeholder="Rating"><br>
+    <input type="submit"  value="add"><br>
+</form>
+
+{% endblock %}
