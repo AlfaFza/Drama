@@ -1,0 +1,53 @@
+
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<style>
+  body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        .movie {
+            background: white;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+        }
+        img {
+            width: 100px;
+        }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>DRAMA</title>
+</head>
+<body>
+     <h2>Search Movies</h2>
+
+        <form method="GET">
+            <input type="text" name="q" placeholder="Enter movie name" required>
+            <button type="submit">Search</button>
+        </form>
+<div>
+  {% if movies %}
+    {% for movie in movies %}
+        <div class="movie">
+            <img src="{{ movie.Poster|default:'https://via.placeholder.com/100' }}">
+            <div>
+                <h3>{{ movie.Title }}</h3>
+                <p>Year: {{ movie.Year }}</p>
+                <p>Type: {{ movie.Type }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No movies found</p>
+{% endif %}
+</div>
+
+{% endblock %}

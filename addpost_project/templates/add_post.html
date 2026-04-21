@@ -1,19 +1,122 @@
 {% extends 'base.html' %}
-
 {% load static %}
+
 {% block content %}
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>DRAMA</title>
+    <title>Drama Form</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        .btn {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            border: none;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+
+        .preview {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .preview img {
+            max-width: 100px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
+
 <body>
-<form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <input type="text" name="name" placeholder="post name"><br>
-    <textarea  name="desc" placeholder="discription"></textarea><br>
-    <input type="file" name="img" placeholder="image"><br>
-    <input type="text" name="rating" placeholder="Rating"><br>
-    <input type="submit"  value="add"><br>
-</form>
+
+<div class="container">
+    <h2>Add Drama 🎬</h2>
+
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Post Name" required>
+
+        <textarea name="desc" placeholder="Description" required></textarea>
+
+        <input type="file" name="img" id="imgInput">
+
+        <div class="preview">
+            <img id="previewImg" src="" style="display:none;">
+        </div>
+
+        <input type="text" name="rating" placeholder="Rating (1-10)" required>
+
+        <button type="submit" class="btn">Add Drama</button>
+    </form>
+</div>
+
+<script>
+    // Image preview
+    const imgInput = document.getElementById("imgInput");
+    const previewImg = document.getElementById("previewImg");
+
+    imgInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            previewImg.src = URL.createObjectURL(file);
+            previewImg.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>
 
 {% endblock %}

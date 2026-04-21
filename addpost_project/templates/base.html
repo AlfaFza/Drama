@@ -4,6 +4,7 @@
 
 <head>
 <title>DRAMA</title>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,6 +24,7 @@
     <header id="header" class="hoc clear center">
       <!-- ################################################################################################ -->
       <h1 id="logo"><i class="fas fa-truck-loading"></i> <a href="/">Drama</a></h1>
+      
       <!-- ################################################################################################ -->
     </header>
   </div>
@@ -35,6 +37,9 @@
        <!-- ################################################################################################ -->
       <ul class="clear">
         <li class="active"><a href="/">Home</a></li>
+        <li ><a href="{% url 'movie_search' %}">Search</a></li>
+
+       
 
 {% if user.is_authenticated %}
 
@@ -56,6 +61,7 @@
 </div>
 {% block content %}
 {% endblock %}
+
 
 <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
 <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
